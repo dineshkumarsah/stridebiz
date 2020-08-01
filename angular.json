@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "strideBiz"
+    }
+  },
+  "defaultProject": "strideBiz",
+  "cli": {
+    "analytics": "e95a8824-0208-4608-bc0d-be14e57d015b"
+  }
 }
