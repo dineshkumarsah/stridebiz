@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import  {FormArray,FormControl,FormGroup} from '@angular/forms';
 import {GetdataService} from '../services/getdata.service'
 import { HttpErrorResponse } from '@angular/common/http';
+import {data} from '../model/data'
 
 @Component({
   selector: 'app-ex2',
@@ -10,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class Ex2Component implements OnInit {
 
- retrivedata: Array<any> = [];
+ retrivedata:data;
 
   constructor(private getdataService:GetdataService ) { }
 
@@ -21,12 +22,7 @@ export class Ex2Component implements OnInit {
   getData(){
     this.getdataService.getBird().subscribe({
       next:(data)=>{
-        this.retrivedata = data as string [];
-       
-        
-        
-      
-       
+        this.retrivedata = data ;
       },
       error:(eror: HttpErrorResponse)=>{
         console.log(eror);
