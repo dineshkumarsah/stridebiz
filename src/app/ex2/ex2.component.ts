@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import  {FormArray,FormControl,FormGroup} from '@angular/forms';
+import {GetdataService} from '../services/getdata.service'
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-ex2',
@@ -8,33 +10,37 @@ import  {FormArray,FormControl,FormGroup} from '@angular/forms';
 })
 export class Ex2Component implements OnInit {
 
-  constructor() { }
+ retrivedata: Array<any> = [];
+
+  constructor(private getdataService:GetdataService ) { }
 
   ngOnInit(): void {
-    let age='age'
-    console.log(this.groupingObject(age));
-    
+    this.getData() 
   }
+ 
+  getData(){
+    this.getdataService.getBird().subscribe({
+      next:(data)=>{
+        this.retrivedata = data as string [];
+       
+        
+        
+      
+       
+      },
+      error:(eror: HttpErrorResponse)=>{
+        console.log(eror);
+        
+      }
+    });
+  }
+ valueCheck(){
+   
+ }
+   
+     
 
-  groupingObject(proprty){
-    let people = [
-      {'name':'dinesh','age':'27'},
-      {'name':'kundan','age':'25'},
-      {'name':'kumar','age':'20'},
-      {'name':'shakti','age':'20'} 
-    ]
-     return people.reduce(
-       (acc,obj)=>{
-         let key = obj[proprty];
-         if(!acc[key]){
-           acc[key] = [];
-         }
-         acc[key].push(obj);
-         return acc
-       },{}
-     ) 
-    
-  }
+  
   
 
 }
